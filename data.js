@@ -79,7 +79,7 @@ const players = [
     fgPct: 47.6,
     threePct: 36.6,
     ftPct: 78.0,
-    mvpRank: 3,
+    mvpRank: 4,
     funFact: "Luka is the youngest player in NBA history to reach 10,000 career points.",
 
   },
@@ -309,7 +309,7 @@ const players = [
     fgPct: 51.2,
     threePct: 34.9,
     ftPct: 82.7,
-    mvpRank: 4,
+    mvpRank: 3,
     funFact: "Wemby is the first rookie in NBA history to average 20+ points, 10+ rebounds, and 3+ blocks.",
 
   },
@@ -607,4 +607,39 @@ const players = [
     funFact: "LeBron is the all-time NBA scoring leader and the greatest of his generation.",
 
   },
+];
+
+const teams = [
+  // West
+  { abbr: "DAL", name: "Dallas Mavericks",      conference: "West", coach: "Jason Kidd",       wins: 26, losses: 56, funFact: "A difficult rebuilding year after Luka's trade to LA." },
+  { abbr: "DEN", name: "Denver Nuggets",         conference: "West", coach: "David Adelman",    wins: 54, losses: 28, funFact: "Jokić led another dominant Nuggets regular season." },
+  { abbr: "GSW", name: "Golden State Warriors",  conference: "West", coach: "Steve Kerr",       wins: 37, losses: 45, funFact: "Curry kept the Warriors relevant deep into the playoff race." },
+  { abbr: "HOU", name: "Houston Rockets",        conference: "West", coach: "Ime Udoka",        wins: 52, losses: 30, funFact: "KD and Şengün gave Houston a lethal frontcourt duo." },
+  { abbr: "LAC", name: "LA Clippers",            conference: "West", coach: "Tyronn Lue",       wins: 42, losses: 40, funFact: "Kawhi's health was the defining factor in the Clippers' season." },
+  { abbr: "LAL", name: "Los Angeles Lakers",     conference: "West", coach: "JJ Redick",        wins: 53, losses: 29, funFact: "LeBron and Luka united in LA to chase a championship." },
+  { abbr: "MEM", name: "Memphis Grizzlies",      conference: "West", coach: "Tuomas Iisalo",    wins: 25, losses: 57, funFact: "A tough reset year as Memphis rebuilt around youth." },
+  { abbr: "MIN", name: "Minnesota Timberwolves", conference: "West", coach: "Chris Finch",      wins: 49, losses: 33, funFact: "Ant-Man turned Minnesota into a perennial Western contender." },
+  { abbr: "NOP", name: "New Orleans Pelicans",   conference: "West", coach: "James Borrego",    wins: 26, losses: 56, funFact: "Injuries and a midseason coaching change derailed the Pelicans." },
+  { abbr: "OKC", name: "Oklahoma City Thunder",  conference: "West", coach: "Mark Daigneault",  wins: 64, losses: 18, funFact: "Youngest roster to win the West." },
+  { abbr: "PHO", name: "Phoenix Suns",           conference: "West", coach: "Jordan Ott",       wins: 45, losses: 37, funFact: "Booker carried the Suns with another All-Star caliber season." },
+  { abbr: "POR", name: "Portland Trail Blazers", conference: "West", coach: "Tiago Splitter",   wins: 42, losses: 39, funFact: "Avdija's breakout All-Star season surprised the entire league." },
+  { abbr: "SAC", name: "Sacramento Kings",       conference: "West", coach: "Doug Christie",    wins: 22, losses: 60, funFact: "Sacramento looked toward the future with a full roster overhaul." },
+  { abbr: "SAS", name: "San Antonio Spurs",      conference: "West", coach: "Mitch Johnson",    wins: 62, losses: 20, funFact: "Wembanyama and Fox led the Spurs back to elite status." },
+  { abbr: "UTA", name: "Utah Jazz",              conference: "West", coach: "Will Hardy",       wins: 22, losses: 60, funFact: "Utah focused on developing their promising young core for the future." },
+  // East
+  { abbr: "ATL", name: "Atlanta Hawks",          conference: "East", coach: "Quin Snyder",      wins: 46, losses: 36, funFact: "Jalen Johnson's breakout season made Atlanta exciting again." },
+  { abbr: "BOS", name: "Boston Celtics",         conference: "East", coach: "Joe Mazzulla",     wins: 56, losses: 26, funFact: "Jaylen Brown led the defending champions toward a repeat." },
+  { abbr: "BRK", name: "Brooklyn Nets",          conference: "East", coach: "Jordi Fernandez",  wins: 20, losses: 62, funFact: "The Nets embraced a full rebuild, hunting for high draft picks." },
+  { abbr: "CHO", name: "Charlotte Hornets",      conference: "East", coach: "Charles Lee",      wins: 44, losses: 38, funFact: "Charlotte surprised the league by finishing above .500." },
+  { abbr: "CHI", name: "Chicago Bulls",          conference: "East", coach: "Billy Donovan",    wins: 31, losses: 51, funFact: "The Bulls struggled to find consistent form all season long." },
+  { abbr: "CLE", name: "Cleveland Cavaliers",    conference: "East", coach: "Kenny Atkinson",   wins: 52, losses: 30, funFact: "Spida Mitchell led Cleveland to another dominant East finish." },
+  { abbr: "DET", name: "Detroit Pistons",        conference: "East", coach: "J.B. Bickerstaff", wins: 60, losses: 22, funFact: "Cade Cunningham led one of the NBA's most stunning turnarounds." },
+  { abbr: "IND", name: "Indiana Pacers",         conference: "East", coach: "Rick Carlisle",    wins: 19, losses: 63, funFact: "Siakam couldn't prevent a down year for Indiana." },
+  { abbr: "MIA", name: "Miami Heat",             conference: "East", coach: "Erik Spoelstra",   wins: 43, losses: 39, funFact: "Heat Culture kept Miami competitive deep into the season." },
+  { abbr: "MIL", name: "Milwaukee Bucks",        conference: "East", coach: "Doc Rivers",       wins: 32, losses: 50, funFact: "Giannis soldiered on through another challenging season." },
+  { abbr: "NYK", name: "New York Knicks",        conference: "East", coach: "Mike Brown",       wins: 53, losses: 29, funFact: "Brunson and KAT turned MSG into the hottest ticket in basketball." },
+  { abbr: "ORL", name: "Orlando Magic",          conference: "East", coach: "Jamahl Mosley",    wins: 45, losses: 37, funFact: "Orlando's young core built real momentum toward East contention." },
+  { abbr: "PHI", name: "Philadelphia 76ers",     conference: "East", coach: "Nick Nurse",       wins: 45, losses: 37, funFact: "Maxey stepped up to lead Philly into the playoffs." },
+  { abbr: "TOR", name: "Toronto Raptors",        conference: "East", coach: "Darko Rajakovic",  wins: 46, losses: 36, funFact: "Ingram and Barnes gave Toronto a dynamic young frontcourt duo." },
+  { abbr: "WAS", name: "Washington Wizards",     conference: "East", coach: "Brian Keefe",      wins: 17, losses: 65, funFact: "Washington had the worst record in the Eastern Conference." },
 ];

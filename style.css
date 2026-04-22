@@ -178,6 +178,14 @@ body {
   background: #181818;
 }
 
+.leader-row--link {
+  cursor: pointer;
+}
+
+.leader-row--link:hover .leader-name {
+  color: #c8102e;
+}
+
 .leader-rank {
   font-size: 0.68rem;
   font-weight: 800;
@@ -349,7 +357,7 @@ body {
 }
 
 .placeholder-msg {
-  color: #2a2a2a;
+  color: grey;
   font-size: 0.8rem;
   margin-top: 100px;
   text-align: center;
@@ -510,6 +518,322 @@ body {
   background: #1a0a0a;
   border-color: #c8102e;
   color: #c8102e;
+}
+
+/* ── MVP Race page ── */
+.mvp-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 28px 32px;
+}
+
+.mvp-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.mvp-rank-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.rank-gold    { background: #1a1200; color: #f0b429; border: 1px solid #2e2000; }
+.rank-silver  { background: #141414; color: #aaa;    border: 1px solid #2a2a2a; }
+.rank-bronze  { background: #150d08; color: #b87333; border: 1px solid #2a1a0a; }
+.rank-default { background: #140508; color: #c8102e; border: 1px solid #2a0a12; }
+
+.mvp-finalist-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  padding: 3px 7px;
+  border-radius: 2px;
+  background: #1a0005;
+  color: #c8102e;
+  border: 1px solid #c8102e;
+  text-transform: uppercase;
+}
+
+.mvp-img-placeholder {
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mvp-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.mvp-jersey {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #1e1e1e;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.mvp-img-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mvp-card-body {
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.mvp-name {
+  font-size: 0.98rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.mvp-team {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: grey;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.mvp-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.mvp-highlight-val {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #c8102e;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.mvp-highlight-lbl {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #c8102e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mvp-reason {
+  font-size: 0.73rem;
+  color: white;
+  font-style: italic;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.mvp-secondary-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.mvp-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.mvp-stat-val {
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #ddd;
+  font-variant-numeric: tabular-nums;
+}
+
+.mvp-stat-lbl {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Teams page ── */
+.teams-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  height: calc(100vh - 58px);
+  background: #0e0e0e;
+  overflow: hidden;
+}
+
+.teams-sidebar {
+  padding: 24px 14px;
+  overflow-y: auto;
+  border-right: 1px solid #1a1a1a;
+  background: #080808;
+}
+
+.teams-sidebar-right {
+  border-right: none;
+  border-left: 1px solid #1a1a1a;
+}
+
+.teams-sidebar::-webkit-scrollbar { width: 3px; }
+.teams-sidebar::-webkit-scrollbar-track { background: transparent; }
+.teams-sidebar::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+
+.conf-label {
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #c8102e;
+  margin: 0 0 14px 6px;
+}
+
+.teams-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.team-item {
+  padding: 9px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 0.83rem;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 1px;
+  border-left: 3px solid transparent;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.team-item:hover {
+  background: #141414;
+  color: #bbb;
+}
+
+.team-item.selected {
+  background: #141414;
+  border-left-color: #c8102e;
+  color: #fff;
+}
+
+.teams-center {
+  padding: 40px 36px;
+  overflow-y: auto;
+  background: #0e0e0e;
+}
+
+.team-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-top: 3px solid #c8102e;
+  border-radius: 3px;
+  padding: 30px 34px;
+  max-width: 580px;
+}
+
+.team-card-name {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.team-card-meta {
+  color: grey;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+
+.team-card-coach {
+  color: #ddd;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.team-card-fact {
+  color: #888;
+  font-style: italic;
+  font-size: 0.84rem;
+  margin: 0 0 22px;
+  line-height: 1.6;
+  padding: 10px 14px;
+  background: #0a0a0a;
+  border-left: 3px solid #1e1e1e;
+}
+
+.team-card-roster-heading {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.team-card-roster {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 0;
+}
+
+.team-card-roster li {
+  color: #bbb;
+  font-size: 0.87rem;
+  padding: 5px 0;
+  border-bottom: 1px solid #181818;
+}
+
+.team-card-roster li:last-child {
+  border-bottom: none;
+}
+
+.team-no-players {
+  color: #444 !important;
+  list-style: none !important;
 }
 
 /* responsive */

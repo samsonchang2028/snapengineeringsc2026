@@ -110,7 +110,8 @@ function renderPlayerDetail(playerId) {
 
 
 
-let favorites = []
+let favorites = [];
+let selectedTeam = null;
 
 
 function toggleFavorite(playerId) {
@@ -123,23 +124,168 @@ function toggleFavorite(playerId) {
 }
 
 function renderTeams() {
-  document.getElementById("page-teams").innerHTML = `
-    <h1>Teams</h1>
+  if (!selectedTeam) selectedTeam = teams.find(t => t.abbr === "OKC");
 
+  const westTeams = teams.filter(t => t.conference === "West");
+  const eastTeams = teams.filter(t => t.conference === "East");
+
+  document.getElementById("page-teams").innerHTML = `
+    <div class="teams-layout">
+      <aside class="teams-sidebar">
+        <h2 class="conf-label">West</h2>
+        <ul class="teams-list">
+          ${westTeams.map(t => `
+            <li class="team-item ${selectedTeam.abbr === t.abbr ? "selected" : ""}"
+                onclick="selectTeam('${t.abbr}')">
+              ${t.name}
+            </li>
+          `).join("")}
+        </ul>
+      </aside>
+      <div class="teams-center">
+        ${buildTeamCard(selectedTeam)}
+      </div>
+      <aside class="teams-sidebar teams-sidebar-right">
+        <h2 class="conf-label">East</h2>
+        <ul class="teams-list">
+          ${eastTeams.map(t => `
+            <li class="team-item ${selectedTeam.abbr === t.abbr ? "selected" : ""}"
+                onclick="selectTeam('${t.abbr}')">
+              ${t.name}
+            </li>
+          `).join("")}
+        </ul>
+      </aside>
+    </div>
   `;
+}
+
+function buildTeamCard(team) {
+  const seen = new Set();
+  const roster = players.filter(p => {
+    if (p.teamShort !== team.abbr || seen.has(p.name)) return false;
+    seen.add(p.name);
+    return true;
+  });
+
+  return `
+    <div class="team-card">
+      <h2 class="team-card-name">${team.name}</h2>
+      <p class="team-card-meta">${team.conference}ern Conference · Record: ${team.wins}-${team.losses}</p>
+      <p class="team-card-coach">Coach: ${team.coach}</p>
+      <p class="team-card-fact">"${team.funFact}"</p>
+      <h3 class="team-card-roster-heading">Roster</h3>
+      <ul class="team-card-roster">
+        ${roster.length > 0
+          ? roster.map(p => `<li>${p.name}</li>`).join("")
+          : `<li class="team-no-players">No featured players this season</li>`}
+      </ul>
+    </div>
+  `;
+}
+
+function selectTeam(abbr) {
+  selectedTeam = teams.find(t => t.abbr === abbr);
+  renderTeams();
 }
 
 function renderStats() {
   document.getElementById("page-stats").innerHTML = `
-    <h1>Stats</h1>
+    <div class="hero-section">
+      <h1>League Leaders</h1>
+      <p class="subtitle">2025–26 Season · Click a player to view their card</p>
+    </div>
+    <div class="leaderboards">
+      <div id="stats-scorers"></div>
+      <div id="stats-rebounds"></div>
+      <div id="stats-assists"></div>
+      <div id="stats-3pt"></div>
+    </div>
+  `;
 
+  renderStatsLeaderboard("stats-scorers",  "Top Scorers",    "ppg",      "PPG");
+  renderStatsLeaderboard("stats-rebounds", "Top Rebounders", "rpg",      "RPG");
+  renderStatsLeaderboard("stats-assists",  "Top Passers",    "apg",      "APG");
+  renderStatsLeaderboard("stats-3pt",      "Top 3pt %",      "threePct", "%");
+}
+
+function renderStatsLeaderboard(containerId, title, stat, label) {
+  const top5 = [...players]
+    .sort((a, b) => b[stat] - a[stat])
+    .slice(0, 5);
+
+  document.getElementById(containerId).innerHTML = `
+    <div class="leaderboard-card">
+      <h3>${title}</h3>
+      ${top5.map((p, i) => `
+        <div class="leader-row leader-row--link" onclick="goToPlayerDetail(${p.id})">
+          <span class="leader-rank">#${i + 1}</span>
+          <span class="leader-name">${p.name}</span>
+          <span class="leader-val">${p[stat]} ${label}</span>
+        </div>
+      `).join("")}
+    </div>
   `;
 }
 
-function renderMVP() {
-  document.getElementById("page-mvp").innerHTML = `
-    <h1>MVP Race</h1>
+function goToPlayerDetail(playerId) {
+  navigate("players");
+  renderPlayerDetail(playerId);
+}
 
+const mvpHighlights = {
+  1: { statKey: "apg",  label: "APG", reason: "Averages a triple-double a game as a center!",              image: "assets/joker.png" },
+  2: { statKey: "ppg",  label: "PPG", reason: "Led OKC to the best record in the NBA, CLUTCH PLAYER OF THE YEAR!!!", image: "assets/shai.png" },
+  3: { statKey: "blk",  label: "BPG", reason: "Leads the NBA in blocks and has 101 consecutive games with blocks!", image: "assets/wemby.jpg" },
+  4: { statKey: "ppg",  label: "PPG", reason: "Best scoring average in the league!",                        image: "assets/luka.png" },
+  5: { statKey: "apg",  label: "APG", reason: "Flippped Detroit's upside down to a championship contender!", image: "assets/cade.png" },
+};
+
+function renderMVP() {
+  const candidates = players
+    .filter(p => p.mvpRank !== null)
+    .filter((p, i, arr) => arr.findIndex(x => x.mvpRank === p.mvpRank) === i)
+    .sort((a, b) => a.mvpRank - b.mvpRank);
+
+  document.getElementById("page-mvp").innerHTML = `
+    <div class="hero-section">
+      <h1>MVP Race</h1>
+      <p class="subtitle">2025–26 Season · Top 5 Candidates</p>
+    </div>
+    <div class="mvp-grid">
+      ${candidates.map(p => {
+        const h = mvpHighlights[p.mvpRank];
+        const rankClass = p.mvpRank === 1 ? "rank-gold" : p.mvpRank === 2 ? "rank-silver" : p.mvpRank === 3 ? "rank-bronze" : "rank-default";
+        return `
+          <div class="mvp-card">
+            <div class="mvp-rank-badge ${rankClass}">#${p.mvpRank}</div>
+            ${p.mvpRank <= 3 ? `<div class="mvp-finalist-badge">FINALIST</div>` : ""}
+            <div class="mvp-img-placeholder">
+              ${h.image
+                ? `<img src="${h.image}" alt="${p.name}" class="mvp-img" />`
+                : `<span class="mvp-jersey">#${p.number}</span>
+                   <span class="mvp-img-label">Photo coming soon</span>`
+              }
+            </div>
+            <div class="mvp-card-body">
+              <h2 class="mvp-name">${p.name}</h2>
+              <p class="mvp-team">${p.team} · ${p.position}</p>
+              <div class="mvp-highlight">
+                <span class="mvp-highlight-val">${p[h.statKey]}</span>
+                <span class="mvp-highlight-lbl">${h.label}</span>
+              </div>
+              <p class="mvp-reason">${h.reason}</p>
+              <div class="mvp-secondary-stats">
+                <div class="mvp-stat"><span class="mvp-stat-val">${p.ppg}</span><span class="mvp-stat-lbl">PPG</span></div>
+                <div class="mvp-stat"><span class="mvp-stat-val">${p.rpg}</span><span class="mvp-stat-lbl">RPG</span></div>
+                <div class="mvp-stat"><span class="mvp-stat-val">${p.apg}</span><span class="mvp-stat-lbl">APG</span></div>
+                <div class="mvp-stat"><span class="mvp-stat-val">${p.fgPct}%</span><span class="mvp-stat-lbl">FG%</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
   `;
 }
 
