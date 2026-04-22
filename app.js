@@ -28,6 +28,7 @@ function renderHome(){
 }
 
 function navigate(page){
+    if (page === "home") { renderHome(); }
     document.querySelectorAll(".page").forEach(p => {
         p.classList.remove("active")
     });
