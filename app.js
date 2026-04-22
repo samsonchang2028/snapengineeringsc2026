@@ -29,3 +29,45 @@ function renderHome(){
 document.addEventListener("DOMContentLoaded", () => {
   renderHome();
 });
+
+function navigate(page){
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active")
+    });
+
+    document.getElementById("page-" + page).classList.add("active");
+
+    if (page === "home")    { renderHome();    console.log("home pressed"); }
+    if (page === "players") { renderPlayers(); console.log("players pressed"); }
+    if (page === "teams")   { renderTeams();   console.log("teams pressed"); }
+    if (page === "stats")   { renderStats();   console.log("stats pressed"); }
+    if (page === "mvp")     { renderMVP();     console.log("mvp pressed"); }
+}
+
+function renderPlayers() {
+  document.getElementById("page-players").innerHTML = `
+    <h1>Players</h1>
+    
+  `;
+}
+
+function renderTeams() {
+  document.getElementById("page-teams").innerHTML = `
+    <h1>Teams</h1>
+    
+  `;
+}
+
+function renderStats() {
+  document.getElementById("page-stats").innerHTML = `
+    <h1>Stats</h1>
+    
+  `;
+}
+
+function renderMVP() {
+  document.getElementById("page-mvp").innerHTML = `
+    <h1>MVP Race</h1>
+    
+  `;
+}
