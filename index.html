@@ -1,31 +1,43 @@
-<!doctype html>
-<html>
-  <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBA Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="#" aria-label="NBA home">
+      <img class="brand-mark" src="assets/nba-logo_2x.png" alt="NBA-style brand mark" />
+      <span class="brand-text">NBA</span>
+    </a>
 
-  <body>
-    <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
-    </header>
-    <div id="card-container"></div>
-    <div class="card" style="display: none">
-      <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
-      </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Players</a></li>
+      <li><a href="#">Teams</a></li>
+      <li><a href="#">Stats</a></li>
+      <li><a href="#">MVP Race</a></li>
+    </ul>
+  </nav>
+  <section id="page-home" class="page active">
+
+    <div class="hero-section">
+      <h1>Your place for all info about the NBA.</h1>
+      <p class="subtitle">2025–26 All-Stars · Stats · MVP Race</p>
     </div>
-    <div class="footer">
-      <button onclick="quoteAlert()">Get A Quote!</button>
-      <button onclick="removeLastCard()">Remove A Card!</button>
+
+    <div class="leaderboards">
+      <div id="top-scorers"></div>
+      <div id="top-rebounds"></div>  
+      <div id="top-assists"></div>
+      <div id="top-3pt-percent"></div>
     </div>
-  </body>
+
+</section>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+
 </html>
