@@ -112,6 +112,8 @@ function renderPlayerDetail(playerId) {
 
 let favorites = [];
 let selectedTeam = null;
+let favoriteTeams = [];
+let showingTeamFavorites = false;
 
 
 function toggleFavorite(playerId) {
@@ -129,29 +131,41 @@ function renderTeams() {
   const westTeams = teams.filter(t => t.conference === "West");
   const eastTeams = teams.filter(t => t.conference === "East");
 
+  const centerContent = showingTeamFavorites
+    ? buildTeamFavoritesView()
+    : buildTeamCard(selectedTeam);
+
   document.getElementById("page-teams").innerHTML = `
     <div class="teams-layout">
       <aside class="teams-sidebar">
         <h2 class="conf-label">West</h2>
         <ul class="teams-list">
           ${westTeams.map(t => `
-            <li class="team-item ${selectedTeam.abbr === t.abbr ? "selected" : ""}"
+            <li class="team-item ${!showingTeamFavorites && selectedTeam.abbr === t.abbr ? "selected" : ""}"
                 onclick="selectTeam('${t.abbr}')">
               ${t.name}
+              ${favoriteTeams.includes(t.abbr) ? `<span class="team-sidebar-star">★</span>` : ""}
             </li>
           `).join("")}
         </ul>
       </aside>
       <div class="teams-center">
-        ${buildTeamCard(selectedTeam)}
+        <div class="teams-center-toolbar">
+          <button class="team-fav-toggle ${showingTeamFavorites ? "active" : ""}"
+                  onclick="toggleTeamFavoritesView()">
+            ★ Favorites${favoriteTeams.length > 0 ? ` (${favoriteTeams.length})` : ""}
+          </button>
+        </div>
+        ${centerContent}
       </div>
       <aside class="teams-sidebar teams-sidebar-right">
         <h2 class="conf-label">East</h2>
         <ul class="teams-list">
           ${eastTeams.map(t => `
-            <li class="team-item ${selectedTeam.abbr === t.abbr ? "selected" : ""}"
+            <li class="team-item ${!showingTeamFavorites && selectedTeam.abbr === t.abbr ? "selected" : ""}"
                 onclick="selectTeam('${t.abbr}')">
               ${t.name}
+              ${favoriteTeams.includes(t.abbr) ? `<span class="team-sidebar-star">★</span>` : ""}
             </li>
           `).join("")}
         </ul>
@@ -168,6 +182,8 @@ function buildTeamCard(team) {
     return true;
   });
 
+  const isFav = favoriteTeams.includes(team.abbr);
+
   return `
     <div class="team-card">
       <h2 class="team-card-name">${team.name}</h2>
@@ -180,12 +196,39 @@ function buildTeamCard(team) {
           ? roster.map(p => `<li>${p.name}</li>`).join("")
           : `<li class="team-no-players">No featured players this season</li>`}
       </ul>
+      <button class="team-fav-btn ${isFav ? "active" : ""}"
+              onclick="toggleTeamFavorite('${team.abbr}')">
+        ${isFav ? "★ Favorited" : "☆ Add to Favorites"}
+      </button>
     </div>
   `;
 }
 
+function buildTeamFavoritesView() {
+  if (favoriteTeams.length === 0) {
+    return `<p class="placeholder-msg" style="margin-top:80px;">No favorite teams yet — click Add to Favorites on any team card</p>`;
+  }
+  const favTeams = teams.filter(t => favoriteTeams.includes(t.abbr));
+  return `<div class="team-fav-grid">${favTeams.map(t => buildTeamCard(t)).join("")}</div>`;
+}
+
+function toggleTeamFavorite(abbr) {
+  if (favoriteTeams.includes(abbr)) {
+    favoriteTeams = favoriteTeams.filter(a => a !== abbr);
+  } else {
+    favoriteTeams.push(abbr);
+  }
+  renderTeams();
+}
+
+function toggleTeamFavoritesView() {
+  showingTeamFavorites = !showingTeamFavorites;
+  renderTeams();
+}
+
 function selectTeam(abbr) {
   selectedTeam = teams.find(t => t.abbr === abbr);
+  showingTeamFavorites = false;
   renderTeams();
 }
 
@@ -257,7 +300,7 @@ function renderMVP() {
         const h = mvpHighlights[p.mvpRank];
         const rankClass = p.mvpRank === 1 ? "rank-gold" : p.mvpRank === 2 ? "rank-silver" : p.mvpRank === 3 ? "rank-bronze" : "rank-default";
         return `
-          <div class="mvp-card">
+          <div class="mvp-card mvp-card--clickable" onclick="goToPlayerDetail(${p.id})">
             <div class="mvp-rank-badge ${rankClass}">#${p.mvpRank}</div>
             ${p.mvpRank <= 3 ? `<div class="mvp-finalist-badge">FINALIST</div>` : ""}
             <div class="mvp-img-placeholder">
@@ -268,7 +311,10 @@ function renderMVP() {
               }
             </div>
             <div class="mvp-card-body">
-              <h2 class="mvp-name">${p.name}</h2>
+              <h2 class="mvp-name">
+                ${p.name}
+                ${favorites.includes(p.id) ? `<span class="mvp-fav-star">★</span>` : ""}
+              </h2>
               <p class="mvp-team">${p.team} · ${p.position}</p>
               <div class="mvp-highlight">
                 <span class="mvp-highlight-val">${p[h.statKey]}</span>
