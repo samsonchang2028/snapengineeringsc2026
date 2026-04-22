@@ -18,7 +18,7 @@ const players = [
     ftPct: 87.9,
     mvpRank: 2,
     funFact: "SGA led OKC to the best record in the NBA at just 27 years old.",
-  
+
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ const players = [
     ftPct: 83.1,
     mvpRank: 1,
     funFact: "Jokić is a 3-time MVP and the only center to average a triple-double for a season.",
-    
+
   },
   {
     id: 3,
@@ -58,9 +58,9 @@ const players = [
     fgPct: 62.4,
     threePct: 33.3,
     ftPct: 65.0,
-    mvpRank: 3,
+    mvpRank: null,
     funFact: "Giannis went from undrafted in Greece to 2-time MVP and NBA champion.",
-    
+
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ const players = [
     ftPct: 78.0,
     mvpRank: 3,
     funFact: "Luka is the youngest player in NBA history to reach 10,000 career points.",
-    
+
   },
   {
     id: 5,
@@ -122,7 +122,7 @@ const players = [
     ftPct: 79.6,
     mvpRank: null,
     funFact: "Ant-Man became the face of a Timberwolves franchise that hadn't won a playoff series in 20 years.",
-    
+
   },
   {
     id: 7,
@@ -143,7 +143,7 @@ const players = [
     ftPct: 79.5,
     mvpRank: null,
     funFact: "Brown was the 2024 NBA Finals MVP as the Celtics won their 18th championship.",
-    
+
   },
   {
     id: 8,
@@ -164,7 +164,7 @@ const players = [
     ftPct: 89.2,
     mvpRank: null,
     funFact: "Maxey improved his scoring average by over 10 points in just two seasons.",
-    
+
   },
   {
     id: 9,
@@ -185,7 +185,7 @@ const players = [
     ftPct: 89.2,
     mvpRank: null,
     funFact: "Kawhi is a 2-time Finals MVP — the only player to win it with two different small-market teams.",
-    
+
   },
   {
     id: 10,
@@ -206,7 +206,7 @@ const players = [
     ftPct: 86.5,
     mvpRank: null,
     funFact: "Spida Mitchell led the Cavaliers to the best record in the East in 2023-24.",
-    
+
   },
   {
     id: 11,
@@ -227,7 +227,7 @@ const players = [
     ftPct: 87.4,
     mvpRank: null,
     funFact: "KD is one of only four players in NBA history to score 30,000 career points.",
-    
+
   },
   {
     id: 12,
@@ -248,7 +248,7 @@ const players = [
     ftPct: 87.3,
     mvpRank: null,
     funFact: "Booker scored 70 points in a single game in 2017 one of the highest totals in NBA history.",
-    
+
   },
   {
     id: 13,
@@ -269,7 +269,7 @@ const players = [
     ftPct: 84.1,
     mvpRank: null,
     funFact: "Brunson carried the Knicks on his back through multiple playoff runs as their undisputed leader.",
-    
+
   },
   {
     id: 14,
@@ -290,7 +290,7 @@ const players = [
     ftPct: 88.7,
     mvpRank: null,
     funFact: "Murray averaged 26.1 PPG in the 2023 playoffs, leading Denver to their first ever championship.",
-    
+
   },
   {
     id: 15,
@@ -311,7 +311,7 @@ const players = [
     ftPct: 82.7,
     mvpRank: 4,
     funFact: "Wemby is the first rookie in NBA history to average 20+ points, 10+ rebounds, and 3+ blocks.",
-    
+
   },
   {
     id: 16,
@@ -332,7 +332,7 @@ const players = [
     ftPct: 80.2,
     mvpRank: null,
     funFact: "Avdija was a surprise All-Star, becoming the first Trail Blazer selected since Damian Lillard.",
-    
+
   },
   {
     id: 17,
@@ -353,7 +353,7 @@ const players = [
     ftPct: 69.3,
     mvpRank: null,
     funFact: "Siakam went from the NBA G-League to All-Star starter in just four seasons.",
-    
+
   },
   {
     id: 18,
@@ -374,7 +374,7 @@ const players = [
     ftPct: 81.2,
     mvpRank: 5,
     funFact: "Cunningham led the Pistons to end the longest losing streak in NBA history.",
-    
+
   },
   {
     id: 19,
@@ -395,7 +395,7 @@ const players = [
     ftPct: 78.8,
     mvpRank: null,
     funFact: "Johnson broke out as one of the most versatile forwards in the league in 2024-25.",
-    
+
   },
   {
     id: 20,
@@ -416,7 +416,7 @@ const players = [
     ftPct: 82.7,
     mvpRank: null,
     funFact: "Powell had a career year at 32, earning his first ever All-Star selection.",
-    
+
   },
   {
     id: 21,
@@ -437,7 +437,7 @@ const players = [
     ftPct: 82.0,
     mvpRank: null,
     funFact: "Ingram was a former #2 overall pick who developed into a reliable All-Star scorer.",
-    
+
   },
   {
     id: 22,
@@ -458,7 +458,7 @@ const players = [
     ftPct: 73.7,
     mvpRank: null,
     funFact: "LeBron is the NBA's all-time scoring leader and was still an All-Star at 40 years old.",
-    
+
   },
   {
     id: 23,
@@ -479,7 +479,7 @@ const players = [
     ftPct: 69.1,
     mvpRank: null,
     funFact: "Şengün is one of the most skilled passing big men in the NBA at just 23 years old.",
-    
+
   },
   {
     id: 24,
@@ -500,7 +500,7 @@ const players = [
     ftPct: 85.8,
     mvpRank: null,
     funFact: "KAT is one of the most skilled shooting big men ever, hitting 3s at a guard-level rate.",
-    
+
   },
   {
     id: 25,
@@ -521,7 +521,7 @@ const players = [
     ftPct: 74.7,
     mvpRank: null,
     funFact: "Duren became one of the most efficient scorers in the league, shooting 65% from the field.",
-    
+
   },
   {
     id: 26,
@@ -542,7 +542,7 @@ const players = [
     ftPct: 76.0,
     mvpRank: null,
     funFact: "Fox is one of the fastest players in the NBA and a nightmare in transition.",
-    
+
   },
   {
     id: 27,
@@ -563,7 +563,7 @@ const players = [
     ftPct: 81.5,
     mvpRank: null,
     funFact: "Barnes won Rookie of the Year in 2022 and has become one of the most versatile defenders in the East.",
-    
+
   },
   {
     id: 28,
@@ -584,7 +584,7 @@ const players = [
     ftPct: 64.6,
     mvpRank: null,
     funFact: "Holmgren is one of the most unique players ever — a 7-footer who can shoot threes and block everything.",
-    
+
   },
   {
     id: 29,
@@ -605,6 +605,6 @@ const players = [
     ftPct: 73.7,
     mvpRank: null,
     funFact: "LeBron is the all-time NBA scoring leader and the greatest of his generation.",
-    
+
   },
 ];

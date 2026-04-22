@@ -8,7 +8,7 @@
 </head>
 <body>
   <nav class="site-nav" aria-label="Primary">
-    <a class="brand" href="#" aria-label="NBA home">
+    <a onclick="navigate('home')" class="brand" href="#" aria-label="NBA home">
       <img class="brand-mark" src="assets/nba-logo_2x.png" alt="NBA-style brand mark" />
       <span class="brand-text">NBA</span>
     </a>
@@ -30,14 +30,30 @@
 
     <div class="leaderboards">
       <div id="top-scorers"></div>
-      <div id="top-rebounds"></div>  
+      <div id="top-rebounds"></div>
       <div id="top-assists"></div>
       <div id="top-3pt-percent"></div>
     </div>
 
 </section>
 <section id="page-home"    class="page"> ... </section>
-<section id="page-players" class="page">        ... </section>
+<section id="page-players" class="page">
+  <div class="page-layout">
+    <aside class="left-panel">
+      <h2>Players</h2>
+      <input
+        type="text"
+        id="player-search"
+        placeholder="Search player/team/favorite"
+        oninput="filterPlayers()"
+      />
+      <ul id="player-list"></ul>
+    </aside>
+    <div class="right-panel" id="player-detail">
+      <p class="placeholder-msg">← Select a player to see details</p>
+    </div>
+  </div>
+</section>
 <section id="page-teams"   class="page">        ... </section>
 <section id="page-stats"   class="page">        ... </section>
 <section id="page-mvp"     class="page">        ... </section>
